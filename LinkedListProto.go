@@ -61,4 +61,30 @@ func (list *LinkedList) get(index int)(interface{}){
 	}
 }
 
+func (list *LinkedList) appendList(other *LinkedList){
+	for list.next!=nil{
+		list = list.next
+	}
+	list.next = other
+}
+
+//removes element at index, not 0 properly
+func (list *LinkedList) remove(index int) interface{}{
+	for i:=0; i<index-1;i++{
+		if(list==nil){
+			return errors.New("Out of Bounds")
+		}
+		list=list.next
+	}
+	pivot:=list.next
+	if pivot==nil{
+		return nil
+	}
+	list.next = pivot.next
+	pivot.next=nil
+	return pivot.data
+
+
+}
+
 
