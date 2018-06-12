@@ -7,18 +7,35 @@ import ("fmt";
 
 func main(){
 	//btreeTest()
-	var example string = "9"
-	testStringPointer(&example)
-	fmt.Println(example)
+	testStack()
+}
+
+func testStack(){
+	stack:=bt.BuildStack(0)
+	for i:=0;i<10;i++{
+		stack.Push(&bt.Integer{i})
+	}
+
+	for i:=0;i<10;i++{
+		fmt.Println(stack.Pop().(*bt.Integer).ToString())
+	}
+
+}
+
+func other(){
+	slice1:=[]int{2}
+	slice2:=[]int{3}
+	testSliceReference(slice1,&slice2)
+	fmt.Println(slice1,slice2)
 }
 
 func btreeTest(){
 	x:=&bt.Integer{10}
 	fmt.Println(x.ToString())
 
-	btreeFirst :=&bt.BTree{}
+	btreeFirst :=&bt.BTree{}//it doesn't have to be a pointer but
 	btreeFirst.Insert(x,func(){})
-	btreeFirst.Insert(&bt.Integer{9},func(){})
+	btreeFirst.Insert(&bt.Integer{9},func(){})//remember comparable interface match signature parameter type which implies *Integer, not Integer
 	btreeFirst.Insert(&bt.Integer{11},func(){})
 	btreeFirst.Print()
 	for i:=0;i<13;i++{
