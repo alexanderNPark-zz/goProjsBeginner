@@ -7,10 +7,23 @@ import ("fmt";
 
 func main(){
 	//btreeTest()
-	testStack()
+	stackLink()
+	//testStackA()
 }
 
-func testStack(){
+func stackLink(){
+	stack:=bt.BuildStackL()
+	for i:=0;i<10;i++{
+		stack.Push(&bt.Integer{i})
+	}
+
+	for i:=0;i<10;i++{
+		fmt.Println(stack.Pop().(*bt.Integer).ToString())
+	}
+	fmt.Println(stack.Size())
+}
+
+func testStackA(){
 	stack:=bt.BuildStack(0)
 	for i:=0;i<10;i++{
 		stack.Push(&bt.Integer{i})
@@ -19,6 +32,7 @@ func testStack(){
 	for i:=0;i<10;i++{
 		fmt.Println(stack.Pop().(*bt.Integer).ToString())
 	}
+	fmt.Println(stack.ToString())
 
 }
 

@@ -6,8 +6,9 @@ import (
 )
 
 type comparable interface{
+	printable //inherit printable methods interrface
 	compareTo(other comparable) int
-	ToString() string
+
 }
 
 type Integer struct{
